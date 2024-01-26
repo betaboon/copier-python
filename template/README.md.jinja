@@ -1,0 +1,49 @@
+{%- set ci_image = "https://img.shields.io/github/actions/workflow/status/" + repository_namespace + "/" + repository_name + "/ci-main.yaml?style=for-the-badge&branch=main&logo=github&logoColor=white" -%}
+{%- set ci_url = repository_url + "/actions/workflows/ci-main.yaml?query=branch%3Amain" -%}
+{%- set docs_image = "https://img.shields.io/badge/docs-blue?style=for-the-badge&label=sphinx&logo=sphinx&logoColor=white" -%}
+{%- set license_image = "https://img.shields.io/pypi/l/" + python_package_name + "?style=for-the-badge" -%}
+{%- set license_url = repository_url + "/LICENSE" -%}
+{%- set pyversions_image = "https://img.shields.io/pypi/pyversions/" + python_package_name + "?style=for-the-badge&logo=python&logoColor=white" -%}
+{%- set version_image = "https://img.shields.io/pypi/v/" + python_package_name + "?style=for-the-badge&logo=pypi&logoColor=white" -%}
+{%- set version_url = "https://pypi.org/project/" + python_package_name -%}
+# {{ project_name }}
+
+[![ci]({{ ci_image }})]({{ ci_url }})
+
+[![version]({{ version_image }})]({{ version_url }})
+[![pyversions]({{ pyversions_image }})]({{ repository_url }})
+[![license]({{ license_image }})]({{ license_url }})
+
+[![docs]({{ docs_image }})]({{ repository_url_pages }})
+[![pdm](https://img.shields.io/badge/managed-blue?style=for-the-badge&logo=pdm&logoColor=white&label=pdm&color=%237e56c2)](https://pdm-project.org)
+[![ruff](https://img.shields.io/badge/formatted-blue?style=for-the-badge&logo=ruff&logoColor=white&label=ruff&color=%23d7ff64)](https://astral.sh/ruff)
+
+## What is {{ project_name }}?
+<!-- start description -->
+
+{{ project_description }}
+
+<!-- end description -->
+
+## Features
+<!-- start features -->
+
+<!-- end features -->
+
+## Installation
+<!-- start installation -->
+
+{{ project_name }} can be installed with `pip`:
+
+```text
+pip install {{ python_package_name }}
+```
+
+<!-- end installation -->
+
+## Quickstart
+<!-- start quickstart -->
+
+<!-- end quickstart -->
+
+## Contributing

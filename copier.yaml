@@ -1,0 +1,119 @@
+_subdirectory: template
+_jinja_extensions:
+  - copier_templates_extensions.TemplateExtensionLoader
+  - extensions/git.py:GitExtension
+  - extensions/python.py:PythonExtension
+  - extensions/slug.py:SlugExtension
+  - extensions/time.py:TimeExtension
+
+# questions
+project_name:
+  help: What is the name of your project?
+  type: str
+
+project_description:
+  help: What is the description of your project?
+  type: str
+
+author_name:
+  help: What is the name of the project author?
+  type: str
+  default: "{{ '' | git_user_name }}"
+
+author_email:
+  help: What is the email of the project author?
+  type: str
+  default: "{{ '' | git_user_email }}"
+
+copyright_holder:
+  help: Who is holding the copyright?
+  type: str
+  default: "{{ author_name }}"
+
+copyright_year:
+  help: What year does the copyright apply to?
+  type: str
+  default: "{{ current_year }}"
+
+copyright_license:
+  help: Which license does your project use?
+  type: str
+  choices:
+    # values are spdx identifiers
+    # see: https://spdx.org/licenses/
+    'Apache License 2.0': Apache-2.0
+    'BSD 2-Clause "Simplified" License': BSD-2-Clause
+    'BSD 3-Clause "New" or "Revised" License': BSD-3-Clause
+    'GNU General Public License v2.0 only': GPL-2.0-only
+    'GNU General Public License v3.0 only': GPL-3.0-only
+    'MIT License': MIT
+  default: MIT License
+
+repository_provider:
+  help: Which repository provider are you using?
+  type: str
+  choices:
+    'GitHub': github
+  default: github
+
+repository_namespace:
+  help: What is the namespace of your repository?
+  type: str
+  default: "{{ author_name }}"
+
+repository_name:
+  help: What is the name of your repository?
+  type: str
+  default: "{{ project_name | to_slug }}"
+
+repository_url:
+  type: str
+  default: |-
+    {% if repository_provider == 'github' -%}
+      https://github.com/{{ repository_namespace }}/{{ repository_name }}
+    {%- endif %}
+  when: false
+
+repository_url_pages:
+  type: str
+  default: |-
+    {% if repository_provider == 'github' -%}
+      https://{{ repository_namespace }}.github.io/{{ repository_name }}
+    {%- endif %}
+  when: false
+
+python_versions:
+  help: Which python versions does your project support?
+  type: str
+  multiselect: true
+  choices:
+    - "3.8"
+    - "3.9"
+    - "3.10"
+    - "3.11"
+    - "3.12"
+
+python_package_name:
+  help: What is the package name of the project?
+  type: str
+  default: "{{ project_name | to_slug }}"
+
+python_import_name:
+  help: What is the import name of the project?
+  type: str
+  default: "{{ project_name | to_slug(separator='_') }}"
+
+python_console_script:
+  help: Does your project provide a console script?
+  type: bool
+
+python_console_script_name:
+  help: What is the name of the console script?
+  type: str
+  default: "{{ project_name | to_slug }}"
+  when: "{{ python_console_script }}"
+
+dockerfile:
+  help: Does your project provide a docker image?
+  type: bool
+  when: "{{ python_console_script }}"

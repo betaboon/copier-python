@@ -1,0 +1,38 @@
+ARG PYTHON_VERSION={{ python_versions | last }}
+ARG PACKAGE_VERSION=0.0.0-dev0
+
+# ---- base ----
+FROM python:${PYTHON_VERSION} AS base
+
+# ---- dependencies ----
+FROM base AS dependencies
+
+WORKDIR /project
+
+RUN pip install -U pip setuptools wheel
+RUN pip install pdm
+
+COPY pyproject.toml pdm.lock ./
+
+RUN pdm config python.use_venv False
+RUN pdm sync --prod --no-editable --no-self
+
+# ---- build ----
+FROM dependencies AS build
+ARG PACKAGE_VERSION
+ENV PDM_BUILD_SCM_VERSION=$PACKAGE_VERSION
+
+COPY README.md ./
+COPY {{ python_import_name }} ./{{ python_import_name }}
+
+RUN pdm sync --prod --no-editable
+
+# ---- release ----
+FROM base AS release
+ARG PYTHON_VERSION
+ENV PYTHONPATH=/project/pkgs
+
+COPY --from=build /project/__pypackages__/${PYTHON_VERSION}/lib /project/pkgs
+COPY --from=build /project/__pypackages__/${PYTHON_VERSION}/bin/* /bin/
+
+ENTRYPOINT [ "{{ python_console_script_name }}" ]
