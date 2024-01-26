@@ -27,7 +27,7 @@ pipx install copier
 
 As this template uses custom extensions you have to install [`copier-templates-extensions`](https://github.com/copier-org/copier-templates-extensions):
 ```
-pip inject copier copier-templates-extensions
+pipx inject copier copier-templates-extensions
 ```
 
 ## Usage
