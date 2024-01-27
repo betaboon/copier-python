@@ -160,6 +160,8 @@ ban-relative-imports = "all"
 "tests/**/*" = [
     "C901", # mccabe - complex-structure
     "D",    # pydocstyle
+    "S",    # flake8-bandit
+    "SIM",  # flake8-simplify
 ]
 
 [tool.pytest.ini_options]
