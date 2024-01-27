@@ -73,6 +73,11 @@ testing = [
     "pytest>=7.4.4",
 ]
 
+[tool.pdm.options]
+lock = [
+    "--group=:all",
+]
+
 [tool.pdm.version]
 source = "scm"
 write_to = "{{ python_import_name }}/__version__.py"
