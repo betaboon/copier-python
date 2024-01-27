@@ -17,24 +17,24 @@ readme = "README.md"
 requires-python = "{{ python_versions | to_python_version }}"
 license = {text = "{{ copyright_license }}"}
 authors = [
-  {name = "{{ author_name }}", email = "{{ author_email }}"},
+    {name = "{{ author_name }}", email = "{{ author_email }}"},
 ]
 maintainers = [
-  {name = "{{ author_name }}", email = "{{ author_email }}"},
+    {name = "{{ author_name }}", email = "{{ author_email }}"},
 ]
 classifiers = [
-  "Development Status :: 2 - Pre-Alpha",
-  "Intended Audience :: Developers",
-  "License :: OSI Approved :: {{ copyright_license_classifiers[copyright_license] }}",
-  "Natural Language :: English",
-  "Operating System :: OS Independent",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3 :: Only",
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: {{ copyright_license_classifiers[copyright_license] }}",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
 {%- for python_version in python_versions %}
-  "Programming Language :: Python :: {{ python_version }}",
+    "Programming Language :: Python :: {{ python_version }}",
 {%- endfor %}
-  "Typing :: Typed",
+    "Typing :: Typed",
 ]
 dynamic = ["version"]
 dependencies = []
@@ -91,53 +91,55 @@ line-length = 100
 preview = true
 
 [tool.ruff.lint]
-fixable = ["ALL"]
+fixable = [
+    "ALL",
+]
 select = [
-  "A", # flake8-builtins
-  "ASYNC", # flake8-async
-  "B", # flake8-bugbear
-  "BLE", # flake8-blind-except
-  "C4", # flake8-comprehensions
-  "C90", # mccabe
-  "COM", # flake8-commas
-  "D", # pydocstyle
-  "DTZ", # flake8-datetimez
-  "E", # pycodestyle errors
-  "ERA", # eradicate
-  "EXE", # flake8-executable
-  "F", # pyflakes
-  "FLY", # flynt
-  "FURB", # refurb
-  "I", # isort
-  "ICN", # flake8-import-conventions
-  "ISC", # flake8-implicit-str-concat
-  "N", # pep8-naming
-  "NPY", # numpy
-  "PD", # pandas-vet
-  "PERF", # perflint
-  "PIE", # flake8-pie
-  "PLC", # pylint - convention
-  "PLE", # pylint - error
-  "PLW", # pylint - warning
-  "PT", # flake8-pytest-style
-  "PTH", # flake8-use-pathlib
-  "Q", # flake8-quotes
-  "RET", # flake8-return
-  "RUF", # Ruff-specific rules
-  "S", # flake8-bandit
-  "SIM", # flake8-simplify
-  "T10", # flake8-debugger
-  "T20", # flake8-print
-  "TCH", # flake8-type-checking
-  "TID", # flake8-tidy-imports
-  "TRY", # tryceratops
-  "UP", # pyupgrade
-  "W", # pycodestyle - warning
-  "YTT", # flake8-2020
+    "A",     # flake8-builtins
+    "ASYNC", # flake8-async
+    "B",     # flake8-bugbear
+    "BLE",   # flake8-blind-except
+    "C4",    # flake8-comprehensions
+    "C90",   # mccabe
+    "COM",   # flake8-commas
+    "D",     # pydocstyle
+    "DTZ",   # flake8-datetimez
+    "E",     # pycodestyle errors
+    "ERA",   # eradicate
+    "EXE",   # flake8-executable
+    "F",     # pyflakes
+    "FLY",   # flynt
+    "FURB",  # refurb
+    "I",     # isort
+    "ICN",   # flake8-import-conventions
+    "ISC",   # flake8-implicit-str-concat
+    "N",     # pep8-naming
+    "NPY",   # numpy
+    "PD",    # pandas-vet
+    "PERF",  # perflint
+    "PIE",   # flake8-pie
+    "PLC",   # pylint - convention
+    "PLE",   # pylint - error
+    "PLW",   # pylint - warning
+    "PT",    # flake8-pytest-style
+    "PTH",   # flake8-use-pathlib
+    "Q",     # flake8-quotes
+    "RET",   # flake8-return
+    "RUF",   # Ruff-specific rules
+    "S",     # flake8-bandit
+    "SIM",   # flake8-simplify
+    "T10",   # flake8-debugger
+    "T20",   # flake8-print
+    "TCH",   # flake8-type-checking
+    "TID",   # flake8-tidy-imports
+    "TRY",   # tryceratops
+    "UP",    # pyupgrade
+    "W",     # pycodestyle - warning
+    "YTT",   # flake8-2020
 ]
 ignore = [
-  "D100", # pydocstyle - undocumented-public-module
-  "D104", # pydocstyle - undocumented-public-package
+    "D100", # pydocstyle - undocumented-public-module
+    "D104", # pydocstyle - undocumented-public-package
 ]
 
 [tool.ruff.isort]
@@ -151,8 +153,8 @@ ban-relative-imports = "all"
 
 [tool.ruff.per-file-ignores]
 "tests/**/*" = [
-  "C901", # mccabe - complex-structure
-  "D", # pydocstyle
+    "C901", # mccabe - complex-structure
+    "D",    # pydocstyle
 ]
 
 [tool.pytest.ini_options]
@@ -186,16 +188,22 @@ cmd = "sphinx-autobuild --watch {{ python_package_name }} docs docs/_build"
 
 [tool.pdm.scripts._ci-lint-code]
 cmd = [
-  "pre-commit", "run",
-  "--show-diff-on-failure",
-  "--from-ref", "${FROM_REF}",
-  "--to-ref", "${TO_REF}",
+    "pre-commit",
+    "run",
+    "--show-diff-on-failure",
+    "--from-ref",
+    "${FROM_REF}",
+    "--to-ref",
+    "${TO_REF}",
 ]
 
 [tool.pdm.scripts._ci-lint-commits]
 cmd = [
-  "gitlint",
-  "--contrib", "contrib-title-conventional-commits",
-  "--ignore", "body-is-missing",
-  "--commits", "${FROM_REF}..${TO_REF}",
+    "gitlint",
+    "--contrib",
+    "contrib-title-conventional-commits",
+    "--ignore",
+    "body-is-missing",
+    "--commits",
+    "${FROM_REF}..${TO_REF}",
 ]
