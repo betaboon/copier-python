@@ -81,7 +81,7 @@ lock = [
 [tool.pdm.version]
 source = "scm"
 write_to = "{{ python_import_name }}/__version__.py"
-write_template = "__version__ = \"{}\""
+write_template = "__version__ = \"{}\"\n"
 
 [tool.semantic_release]
 tag_format = "{version}"
