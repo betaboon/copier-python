@@ -86,6 +86,11 @@ write_template = "__version__ = \"{}\"\n"
 [tool.semantic_release]
 tag_format = "{version}"
 
+[tool.semantic_release.changelog]
+exclude_commit_patterns = [
+    "Merge pull request.*",
+]
+
 [tool.mypy]
 strict = true
 python_version = "{{ python_versions | first }}"
