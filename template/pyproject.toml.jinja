@@ -183,6 +183,11 @@ parallel = true
 source = ["{{ python_import_name }}"]
 omit = ["{{ python_import_name }}/__version__.py"]
 
+[tool.coverage.report]
+exclude_also = [
+    'if\s+(typing\.)?TYPE_CHECKING:',
+]
+
 [tool.pdm.scripts.install-git-hooks]
 help = "Install pre-commit hooks"
 cmd = "pre-commit install --install-hooks"
