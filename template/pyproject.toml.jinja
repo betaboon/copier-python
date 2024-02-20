@@ -106,6 +106,7 @@ fixable = [
 ]
 select = [
     "A",     # flake8-builtins
+    "ANN",   # flake8-annotations
     "ASYNC", # flake8-async
     "B",     # flake8-bugbear
     "BLE",   # flake8-blind-except
@@ -148,8 +149,10 @@ select = [
     "YTT",   # flake8-2020
 ]
 ignore = [
-    "D100", # pydocstyle - undocumented-public-module
-    "D104", # pydocstyle - undocumented-public-package
+    "ANN101", # flake8-annotations - missing-type-self
+    "ANN102", # flake8-annotations - missing-type-cls
+    "D100",   # pydocstyle - undocumented-public-module
+    "D104",   # pydocstyle - undocumented-public-package
 ]
 
 [tool.ruff.isort]
