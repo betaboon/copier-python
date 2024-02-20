@@ -181,6 +181,7 @@ xfail_strict = true
 branch = true
 parallel = true
 source = ["{{ python_import_name }}"]
+omit = ["{{ python_import_name }}/__version__.py"]
 
 [tool.pdm.scripts.install-git-hooks]
 help = "Install pre-commit hooks"
